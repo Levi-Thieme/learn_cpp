@@ -5,8 +5,8 @@
 
 using namespace std;
 
-string maxSubstr(string, string);
-string getFileString(string);
+string maxSubstr(const string&, const string&);
+string getFileString(const string&);
 
 int main() {
     string s1 = getFileString("text1.txt");
@@ -15,7 +15,10 @@ int main() {
     return 0;
 }
 
-string getFileString(const string filename) {
+/*
+ * Returns a string containing the contents of the file.
+ */
+string getFileString(const string &filename) {
     ifstream in(filename);
     if (in.fail()) {
         cout << "Could not open " << filename << endl;
@@ -32,7 +35,7 @@ string getFileString(const string filename) {
 /*
  * Returns a string containing the maximum common substring of s1 and s2
  */
-string maxSubstr(string s1, string s2) {
+string maxSubstr(const string &s1, const string &s2) {
     if (s1.length() == 0 || s2.length() == 0) {
         return "";
     }
@@ -61,18 +64,3 @@ string maxSubstr(string s1, string s2) {
     }
     return common;
 }
-
-/*
- Find the longest contiguous or noncontiguous substrings in two words
- see if a character from s1 is in s2, if so then find all subsequent characters in s1 that are in s2 that are past the location
- of the original character and ordered.
- If not, then go to the next character of s1
-
- use the shortest string to improve efficiency
- test for empty strings
-
- helper functions:
-    string::find()
-    string::substr()
-    string::append()
- */
